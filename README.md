@@ -1,2 +1,3 @@
-# 2018-itx-iac-workshop
-Materials for "Infrastructure as Code for Beginners" workshop at Interop ITX 2018 in Las Vegas, NV
+# Infrastructue as Code for Beginners Hands-on Workshop
+
+This repository contains the materials for the "Infrastructure as Code for Beginners" hands-on workshop at Interop ITX 2018 in Las Vegas, NV.
