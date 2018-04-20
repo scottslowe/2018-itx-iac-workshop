@@ -1,6 +1,6 @@
 # Git demo and hands-on lab
 
-1. Before you can use Git to work with GitHub, you'll want to configure Git (if you haven't already). First, tell Git your name with `git config --global user.name "<Your Name>"` (the quotes are needed).
+1. Before you can use Git, you'll need to configure Git (if you haven't already). First, tell Git your name with `git config --global user.name "<Your Name>"` (the quotes are needed).
 
 2. Next, tell Git your email address with `git config --global user.email "<your.address@domain.com>"` (the quotes are needed).
 
