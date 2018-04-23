@@ -1,16 +1,8 @@
 ---
-- hosts: "all"
+- hosts: "tag_role_node"
   become: true
-  remote_user: "ubuntu"
-  gather_facts: false
 
   tasks:
-  - name: "Install Python"
-    raw: "apt-get -y -q install python"
-
-  - name: "Gather facts"
-    setup:
-
   - name: "Install Kubernetes APT Key"
     apt_key:
       url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"

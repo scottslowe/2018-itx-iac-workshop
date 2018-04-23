@@ -1,14 +1,13 @@
 ---
-- hosts: tag_role_etcd
-  become: yes
-  remote_user: "ubuntu"
+- hosts: "tag_role_etcd"
+  become: true
   vars:
     etcd_install_dir: "/usr/local/bin"
     etcd_platform: "linux-amd64"
     etcd_version: "3.2.18"
-    etcd_name: "etcd-{{etcd_version}}-{{etcd_platform}}"
+    etcd_name: "etcd-v{{etcd_version}}-{{etcd_platform}}"
     etcd_tgz: "{{etcd_name}}.tar.gz"
-    etcd_tgz_url: "https://github.com/coreos/etcd/releases/download/{{etcd_tgz}}"
+    etcd_tgz_url: "https://github.com/coreos/etcd/releases/download/v{{etcd_version}}/{{etcd_tgz}}"
 
   tasks:
   - name: check for installation of etcd
