@@ -1,0 +1,8 @@
+---
+# Variables file for turning up an etcd v3 cluster
+etcd_install_dir: "/usr/local/bin"
+etcd_platform: "linux-amd64"
+etcd_version: "3.2.18"
+etcd_name: "etcd-v{{etcd_version}}-{{etcd_platform}}"
+etcd_tgz: "{{etcd_name}}.tar.gz"
+etcd_tgz_url: "https://github.com/coreos/etcd/releases/download/v{{etcd_version}}/{{etcd_tgz}}"
