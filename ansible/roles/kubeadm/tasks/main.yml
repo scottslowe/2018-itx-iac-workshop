@@ -1,6 +1,14 @@
 ---
 # Tasks file for kubeadm role
 
+- name: Install apt-transport-https
+  apt:
+    name: "apt-transport-https"
+    state: "latest"
+    update-cache: true
+  tags:
+    - kubernetes
+
 - name: "Install Kubernetes APT Key"
   apt_key:
     url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
@@ -12,7 +20,7 @@
   apt_repository:
     repo: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
     state: "present"
-    update_cache: "yes"
+    update_cache: true
   tags:
     - kubernetes
 
@@ -28,12 +36,20 @@
   tags:
     - kubernetes
 
-- name: Ensure /etc/kubernetes exists
+- name: Ensure Kubernetes-related directories exist
   file:
-    path: /etc/kubernetes
+    path: "{{ item }}"
     state: directory
+  with_items:
+    - /etc/kubernetes
+    - /etc/kubernetes/audit
 
 - name: Render kubeadm.conf template
   template:
     src: kubeadm.conf.j2
     dest: /etc/kubernetes/kubeadm.conf
+
+- name: Copy over audit policy
+  copy:
+    src: audit-policy.yaml
+    dest: /etc/kubernetes/audit/audit-policy.yaml

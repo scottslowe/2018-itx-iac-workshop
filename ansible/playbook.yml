@@ -13,10 +13,14 @@
 
   roles:
     - etcd
+  tags:
+    - etcd
 
 - hosts: tag_role_node
   become: true
   gather_facts: true
 
   roles:
+    - kubeadm
+  tags:
     - kubeadm
