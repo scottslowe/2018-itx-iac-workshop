@@ -64,6 +64,39 @@ module "etcd" {
   role           = "etcd"
 }
 
+resource "aws_security_group" "k8s_sg" {
+  name        = "k8s_sg"
+  description = "Allow traffic needed by Kubernetes"
+  vpc_id      = "${module.k8s-vpc.vpc_id}"
+}
+
+resource "aws_security_group_rule" "k8s_sg_allow_sg_in" {
+  security_group_id        = "${aws_security_group.k8s_sg.id}"
+  type                     = "ingress"
+  from_port                = 0
+  to_port                  = 0
+  protocol                 = "-1"
+  source_security_group_id = "${aws_security_group.k8s_sg.id}"
+}
+
+resource "aws_security_group_rule" "k8s_sg_allow_sg_out" {
+  security_group_id        = "${aws_security_group.k8s_sg.id}"
+  type                     = "egress"
+  from_port                = 0
+  to_port                  = 0
+  protocol                 = "-1"
+  source_security_group_id = "${aws_security_group.k8s_sg.id}"
+}
+
+resource "aws_security_group_rule" "k8s_sg_allow_apiserver" {
+  security_group_id = "${aws_security_group.k8s_sg.id}"
+  type              = "ingress"
+  from_port         = 6443
+  to_port           = 6443
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
 module "nodes" {
   source = "./modules/instance-cluster"
 
@@ -74,6 +107,6 @@ module "nodes" {
   ssh_key        = "${var.key_pair}"
   cluster_size   = 5
   subnet_list    = ["${module.k8s-vpc.subnet_id}"]
-  sec_group_list = ["${module.k8s-vpc.default_sg_id}"]
+  sec_group_list = ["${module.k8s-vpc.default_sg_id}", "${aws_security_group.k8s_sg.id}"]
   role           = "node"
 }
