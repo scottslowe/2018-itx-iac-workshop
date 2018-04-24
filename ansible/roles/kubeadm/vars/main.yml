@@ -1,0 +1,9 @@
+---
+# Variables file for kubeadm role
+
+podSubnet: 172.24.0.0/16
+serviceSubnet: 10.0.0.0/16
+k8sVersion: 1.9.6
+cloudProvider: aws
+kubeadmToken: 8fcc26.83ab1665d9142018
+apiServerCertSANs: apiserver.cluster.io

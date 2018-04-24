@@ -1,0 +1,22 @@
+---
+- hosts: "all"
+  become: true
+  gather_facts: false
+
+  tasks:
+  - name: "Install Python"
+    raw: "apt-get -y -q install python"
+
+- hosts: tag_role_etcd
+  become: true
+  gather_facts: true
+
+  roles:
+    - etcd
+
+- hosts: tag_role_node
+  become: true
+  gather_facts: true
+
+  roles:
+    - kubeadm

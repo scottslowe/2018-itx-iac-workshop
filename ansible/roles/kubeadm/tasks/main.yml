@@ -1,0 +1,39 @@
+---
+# Tasks file for kubeadm role
+
+- name: "Install Kubernetes APT Key"
+  apt_key:
+    url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    state: "present"
+  tags:
+    - kubernetes
+
+- name: "Add Kubernetes repository for Ubuntu Xenial"
+  apt_repository:
+    repo: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+    state: "present"
+    update_cache: "yes"
+  tags:
+    - kubernetes
+
+- name: "Install packages for Docker and Kubernetes"
+  apt:
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+    - "docker.io"
+    - "kubectl"
+    - "kubelet"
+    - "kubeadm"
+  tags:
+    - kubernetes
+
+- name: Ensure /etc/kubernetes exists
+  file:
+    path: /etc/kubernetes
+    state: directory
+
+- name: Render kubeadm.conf template
+  template:
+    src: kubeadm.conf.j2
+    dest: /etc/kubernetes/kubeadm.conf
