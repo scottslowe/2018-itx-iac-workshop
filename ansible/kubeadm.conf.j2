@@ -4,9 +4,9 @@ apiVersion: kubeadm.k8s.io/v1alpha1
     advertiseAddress: {{ apiAdvertiseAddress }}
   etcd:
     endpoints:
-    - {{ etcdServer1 }}
-    - {{ etcdServer2 }}
-    - {{ etcdServer3 }}
+    - {{ groups['tag_role_etcd'][0] }}
+    - {{ groups['tag_role_etcd'][1] }}
+    - {{ groups['tag_role_etcd'][2] }}
   networking:
     podSubnet: {{ podSubnet }}
     serviceSubnet: {{ serviceSubnet }}

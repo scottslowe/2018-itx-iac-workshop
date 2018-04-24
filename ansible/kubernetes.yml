@@ -1,6 +1,18 @@
 ---
+- hosts: "all"
+  become: true
+  gather_facts: false
+
+  tasks:
+  - name: "Install Python"
+    raw: "apt-get -y -q install python"
+  tags:
+    - etcd
+    - kubernetes
+
 - hosts: "tag_role_node"
   become: true
+  gather_facts: true
 
   tasks:
   - name: "Install Kubernetes APT Key"
@@ -8,8 +20,7 @@
       url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
       state: "present"
     tags:
-      - manager
-      - worker
+      - kubernetes
 
   - name: "Add Kubernetes repository for Ubuntu Xenial"
     apt_repository:
@@ -17,8 +28,7 @@
       state: "present"
       update_cache: "yes"
     tags:
-      - manager
-      - worker
+      - kubernetes
 
   - name: "Install packages for Docker and Kubernetes"
     apt:
@@ -30,5 +40,4 @@
       - "kubelet"
       - "kubeadm"
     tags:
-      - manager
-      - node
+      - kubernetes

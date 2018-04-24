@@ -2,9 +2,6 @@
 - hosts: all
   vars:
     apiAdvertiseAddress: 192.168.100.100
-    etcdServer1: 192.168.100.200
-    etcdServer2: 192.168.100.201
-    etcdServer3: 192.168.100.202
     podSubnet: 172.24.0.0/16
     serviceSubnet: 10.0.0.0/16
     k8sVersion: 1.9.6
