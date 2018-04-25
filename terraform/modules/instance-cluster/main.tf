@@ -7,6 +7,7 @@ resource "aws_instance" "instance" {
   key_name                    = "${var.ssh_key}"
   associate_public_ip_address = "${var.assign_pub_ip}"
   vpc_security_group_ids      = ["${var.sec_group_list}"]
+  iam_instance_profile        = "${var.instance_profile}"
 
   tags {
     Name = "${var.name}-${count.index}"
