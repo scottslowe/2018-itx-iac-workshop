@@ -29,7 +29,7 @@ apiServerExtraArgs:
 controllerManagerExtraArgs:
   cloud-provider: {{ cloudProvider }}
   configure-cloud-routes: "false"
-apiServerExtraVolumes: 
+apiServerExtraVolumes:
   - name: "audit-policy"
     hostPath: "/etc/kubernetes/audit"
     mountPath: "/etc/kubernetes/audit"
