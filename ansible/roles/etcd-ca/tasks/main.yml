@@ -1,0 +1,30 @@
+---
+- name: Create etcd-ca
+  command: /usr/bin/kubeadm alpha phase certs etcd-ca
+  become: true
+  become_user: root
+  args:
+    creates: '/etc/kubernetes/pki/etcd/ca*'
+
+- name: Create apiserver-etcd-client certs
+  command: /usr/bin/kubeadm alpha phase certs apiserver-etcd-client
+  become: true
+  become_user: root
+  args:
+    creates: '/etc/kubernetes/pki/apiserver-etcd-client*'
+
+- name: Create the tarball to be copied around
+  archive:
+    path: /etc/kubernetes/pki
+    dest: /home/ubuntu/pki.tgz
+    group: ubuntu
+    owner: ubuntu
+
+- name: Copy the pki assets to the other nodes.
+  synchronize:
+    src: /home/ubuntu/pki.tgz
+    dest: /home/ubuntu/pki.tgz
+    mode: pull
+    use_ssh_args: true
+  delegate_to: "{{ item }}"
+  with_inventory_hostnames: "tag_role_etcd:tag_role_node:!tag_role_node[0]"

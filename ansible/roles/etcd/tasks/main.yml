@@ -1,5 +1,15 @@
 ---
 # Tasks file for turning up etcd v3 cluster
+#
+- name: expand the k8s pki assets
+  become: yes
+  become_user: root
+  unarchive:
+    remote_src: yes
+    src: /home/ubuntu/pki.tgz
+    dest: /etc/kubernetes/
+    creates: '/etc/kubernetes/pki*'
+
 - name: check for installation of etcd
   stat:
     path: '{{etcd_install_dir}}/{{etcd_name}}'

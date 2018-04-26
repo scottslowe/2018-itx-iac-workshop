@@ -1,0 +1,20 @@
+---
+# Tasks file for kubeadm role
+
+- name: Ensure Kubernetes-related directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/kubernetes
+    - /etc/kubernetes/audit
+
+- name: Render kubeadm.conf template
+  template:
+    src: kubeadm.conf.j2
+    dest: /etc/kubernetes/kubeadm.conf
+
+- name: Copy over audit policy
+  copy:
+    src: audit-policy.yaml
+    dest: /etc/kubernetes/audit/audit-policy.yaml

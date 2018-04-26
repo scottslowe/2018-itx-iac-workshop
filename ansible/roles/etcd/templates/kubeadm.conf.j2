@@ -1,0 +1,21 @@
+apiVersion: kubeadm.k8s.io/v1alpha1
+kind: MasterConfiguration
+api:
+etcd:
+  serverCertSANS:
+  - {{ groups['tag_role_etcd'][0] }}
+  - {{ groups['tag_role_etcd'][1] }}
+  - {{ groups['tag_role_etcd'][2] }}
+  peerCertSANS:
+  - {{ groups['tag_role_etcd'][0] }}
+  - {{ groups['tag_role_etcd'][1] }}
+  - {{ groups['tag_role_etcd'][2] }}
+  extraArgs:
+        initial-cluster-token: etcd-cluster-1
+        initial-cluster: {{ etcd_initial_advertise_urls }}
+        initial-cluster-state: {{ etcd_initial_cluster_state }}
+        name: {{
+        listen-peer-urls: https://10.0.0.204:2380
+        listen-client-urls: https://10.0.0.204:2379
+        advertise-client-urls: https://10.0.0.204:2379
+        initial-advertise-peer-urls https://10.0.0.204:2380
