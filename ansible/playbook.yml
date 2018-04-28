@@ -7,15 +7,6 @@
   - name: "Install Python"
     raw: "apt-get -y -q install python"
 
-- hosts: tag_role_etcd
-  become: true
-  gather_facts: true
-
-  roles:
-    - etcd
-  tags:
-    - etcd
-
 - hosts: tag_role_node
   become: true
   gather_facts: true

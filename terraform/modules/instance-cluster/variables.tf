@@ -46,4 +46,5 @@ variable "role" {
 variable "instance_profile" {
   type        = "string"
   description = "IAM instance profile to attach to instances"
+  default     = ""
 }
