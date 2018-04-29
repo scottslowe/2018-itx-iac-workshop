@@ -1,0 +1,5 @@
+user_region = "us-west-2"
+
+node_type = "t2.large"
+
+key_pair = "id_rsa"
