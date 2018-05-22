@@ -1,6 +1,6 @@
 # Kubernetes hands-on lab
 
-_These instructions assume you've completed the previous hands-on labs._
+_Prerequisites: Completed all of the Ansible hands-on lab_
 
 1. In the `ansible` subdirectory, run `python ec2.py --list` and make a note of the IP address of the first EC2 instance in the "tag_role_node" group.
 

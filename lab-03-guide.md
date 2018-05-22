@@ -1,5 +1,7 @@
 # Ansible demo and hands-on lab
 
+_Prerequisites: Ansible installed on your system; all of the Terraform hands-on lab completed_
+
 _These instructions assume you've completed at least steps 1 through 7 of the Git hands-on lab (i.e., that you have a cloned copy of the repository on your local computer) and all of the steps in the Terraform lab **except** the last 2 steps (which you should wait to complete after this lab)._
 
 1. Change into the directory where Git cloned the repository, then change into the `ansible` subdirectory.

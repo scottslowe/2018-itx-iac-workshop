@@ -1,5 +1,7 @@
 # Git demo and hands-on lab
 
+_Prerequisites: A GitHub account; Git installed on your system_
+
 1. Before you can use Git, you'll need to configure Git (if you haven't already). First, tell Git your name with `git config --global user.name "<Your Name>"` (the quotes are needed).
 
 2. Next, tell Git your email address with `git config --global user.email "<your.address@domain.com>"` (the quotes are needed).

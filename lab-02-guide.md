@@ -1,6 +1,6 @@
 # Terraform demo and hands-on lab
 
-_These instructions assume you've completed at least steps 1 through 7 of the Git hands-on lab (i.e., that you have a cloned copy of the repository on your local computer)._
+_Prerequisites: Terraform installed on your system; an AWS account; AWS CLI installed and configured for your account; at least steps 1 through 7 of the Git hands-on lab completed (must have a cloned copy of the repository available locally)_
 
 1. Change into the directory where Git cloned the repository, then change into the `terraform` subdirectory.
 
