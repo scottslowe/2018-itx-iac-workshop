@@ -10,14 +10,16 @@ _These instructions assume you've completed at least steps 1 through 7 of the Gi
 
 3. Review the output of the dynamic inventory module. What sort of information does the module provide? Why is this important?
 
-4. Run `ansible-playbook playbook.yml` to run Ansible against the EC2 instances created by Terraform in the previous lab.
+4. Edit the `ansible.cfg` file in the `ansible` subdirectory and change the "private_key_file" line to correctly reflect the path and name of the SSH private key that you will use to connect to the AWS instances. This should correspond to the SSH key referenced in step 3 of the Terraform hands-on lab.
 
-5. Note how when Ansible was running, some tasks reported back "OK" (in green) while other tasks reported back "changed" (in yellow/orange). Make a note of the changed tasks.
+5. Run `ansible-playbook playbook.yml` to run Ansible against the EC2 instances created by Terraform in the previous lab.
 
-6. When Ansible is finished running, SSH into one of the EC2 instances. 
+6. Note how when Ansible was running, some tasks reported back "OK" (in green) while other tasks reported back "changed" (in yellow/orange). Make a note of the changed tasks.
 
-7. Take a moment to try to verify the changes made by one of the tasks that reported back as "changed".
+7. When Ansible is finished running, SSH into one of the EC2 instances. 
 
-8. Repeat step 3. Did any tasks report back as "changed" this time? Which tasks? Why?
+8. Take a moment to try to verify the changes made by one of the tasks that reported back as "changed".
+
+9. Repeat step 3. Did any tasks report back as "changed" this time? Which tasks? Why?
 
 At this point, you can proceed with the (optional) fourth lab, which will help you turn up a Kubernetes cluster, or you can return to the Terraform lab to tear down your infrastructure.
